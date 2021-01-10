@@ -1,0 +1,88 @@
+<div class="container">
+
+  <h2 id="menu-categories-title" class="text-center">Sign Up for Our Newsletter</h2>
+  <div class="text-left">
+
+  <fieldset>
+  <legend>SignUp</legend>
+  <form name='signupForm' novalidate>
+
+    <input type="text" name="firstname" placeholder="Enter First Name"
+      ng-model="$signUpCtrl.user.firstname"
+      required>
+      <span
+        ng-if="(signupForm.firstname.$error.required) && signupForm.firstname.$touched">
+        First Name is required.
+      </span>
+      <br>
+
+    <input type="text" name="lastname" placeholder="Enter Last Name"
+        ng-model="$signUpCtrl.user.lastname"
+        required>
+        <span
+          ng-if="(signupForm.lastname.$error.required) && signupForm.lastname.$touched">
+          Last Name is required.
+        </span>
+        <br>
+
+    <input type="email" name="email" placeholder="Email"
+      ng-model="$signUpCtrl.user.email"
+      required>
+      <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+        Must be a valid email address: handle@domain format
+      </span>
+      <br>
+
+    <input type="text" name="phone" placeholder="Phone ###-###-####"
+      ng-model="$signUpCtrl.user.phone"
+      required
+      pattern="(\d{3})-(\d{3})-(\d{4})">
+      <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+        Phone must be in the format ###-###-####.
+      </span>
+      <br>
+
+      <input type="text" name="favitem" placeholder="Enter Favorite Item Number"
+        ng-model="$signUpCtrl.user.favitem">
+      <br>
+
+    <button class="signup-button"
+      ng-disabled="signupForm.$invalid"
+      ng-click=" $signUpCtrl.submit()">Submit</button>
+
+      <div style="margin-top: 10px;">
+        <!--Form valid? {{ signupForm.$valid }}-->
+      </div>
+  </form>
+</fieldset>
+
+</div>
+
+<div id="info" ng-if="$signUpCtrl.success">
+  <h3>Your Information Has Been Saved!</h3>
+  <br>
+  First Name: {{ $signUpCtrl.user.firstname}} <br>
+  Last Name: {{ $signUpCtrl.user.lastname}} <br>
+  Email: {{ $signUpCtrl.user.email}} <br>
+  Phone: {{ $signUpCtrl.user.phone }}<br>
+  <div ng-if="$signUpCtrl.user.favitem !== undefined && $signUpCtrl.user.favitem !== 'XX' && $signUpCtrl.user.favitem !== 'NF'">
+    Favorite Item: {{ $signUpCtrl.user.favitem }}
+    <img class="img-responsive" width="250" height="150" ng-src="https://mjtimm-course5.herokuapp.com/images/{{ $signUpCtrl.user.favitem }}.jpg"
+    alt="Image of Item {{ $signUpCtrl.user.favitem }}">
+  </div>
+  <div ng-if="$signUpCtrl.user.favitem !== undefined && $signUpCtrl.user.favitem === 'XX'">
+      Favorite Item: Nothing Selected
+      <img class="img-responsive" width="250" height="150" ng-src="/images/empty-plate.jpg"
+       alt="Sad Empty Plate">
+  </div>
+  <div ng-if="$signUpCtrl.user.favitem !== undefined && $signUpCtrl.user.favitem === 'NF'">
+      Favorite Item: Not Found (no such menu number exists).
+      <img class="img-responsive" width="250" height="150" ng-src="/images/empty-plate.jpg"
+       alt="Sad Empty Plate">
+  </div>
+  <div ng-if="$signUpCtrl.user.favitem === undefined">
+      Favorite Item: Nothing Selected
+  </div>
+</div>
+
+</div>

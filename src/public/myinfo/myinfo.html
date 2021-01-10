@@ -1,0 +1,54 @@
+<div class="container">
+  <h2 id="myInfo-title" class="text-center">Your Account Information.</h2>
+
+  <div ng-if="$myInfoCtrl.user.firstname !== undefined">
+     First Name: {{ $myInfoCtrl.user.firstname }}
+     <br/>
+     Last Name: {{ $myInfoCtrl.user.lastname }}
+     <br/>
+     Email: {{ $myInfoCtrl.user.email }}
+     <br/>
+     Phone: {{ $myInfoCtrl.user.phone }}
+     <br/>
+
+     <div ng-if="$myInfoCtrl.user.favitem !== undefined && $myInfoCtrl.user.favitem !== 'XX' && $myInfoCtrl.user.favitem !== 'NF'">
+        <h3>
+          Favorite Item: {{ $myInfoCtrl.user.favitem }}
+        </h3>
+        <br/>
+        <img class="img-responsive" width="250" height="150" ng-src="https://mjtimm-course5.herokuapp.com/images/{{ $myInfoCtrl.user.favitem }}.jpg"
+         alt="Image of Item {{ $myInfoCtrl.user.favitem }}">
+     </div>
+     <div ng-if="$myInfoCtrl.user.favitem !== undefined && $myInfoCtrl.user.favitem === 'XX'">
+       <h3>
+         Favorite Item: Nothing Selected
+       </h3>
+       <br>
+       <img class="img-responsive" width="250" height="150" ng-src="/images/empty-plate.jpg"
+        alt="Sad Empty Plate">
+     </div>
+     <div ng-if="$myInfoCtrl.user.favitem !== undefined && $myInfoCtrl.user.favitem === 'NF'">
+       <h3>
+         Favorite Item: Not Found
+       </h3>
+       <br>
+       <img class="img-responsive" width="250" height="150" ng-src="/images/empty-plate.jpg"
+        alt="Sad Empty Plate">
+     </div>
+     <div ng-if="$myInfoCtrl.user.favitem === undefined">
+        <h3>
+          Favorite Item: Nothing Selected
+        </h3>
+        <br>
+        <img class="img-responsive" width="250" height="150" ng-src="/images/empty-plate.jpg"
+         alt="Sad Empty Plate">
+     </div>
+  </div>
+
+  <div ng-show="{{ $myInfoCtrl.user.firstname === undefined }}">
+     <h3 class="text-center">You have not signed up yet.</h3>
+     <br>
+     <a class="btn btn-default signup-button" ui-sref="public.signup">Please sign up now!</a>
+  </div>
+
+</div>
