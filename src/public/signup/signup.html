@@ -44,6 +44,12 @@
 
       <input type="text" name="favitem" placeholder="Enter Favorite Item Number"
         ng-model="$signUpCtrl.user.favitem">
+        <span ng-if="$signUpCtrl.user.favitem === 'NF'">
+          No such menu number exists.
+        </span>
+        <span ng-if="$signUpCtrl.user.favitem === 'XX'">
+          Nothing entered.
+        </span>
       <br>
 
     <button class="signup-button"
